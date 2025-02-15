@@ -165,7 +165,7 @@ button:hover {
             });
         
 
-        function moveNoButton() {
+       function moveNoButton() {
             const maxX = window.innerWidth - noButton.offsetWidth;
             const maxY = window.innerHeight - noButton.offsetHeight;
 
@@ -173,11 +173,18 @@ button:hover {
             do {
                 newX = Math.random() * maxX;
                 newY = Math.random() * maxY;
-            } while (Math.abs(newX - noButton.offsetLeft) < 50 || Math.abs(newY - noButton.offsetTop) < 50);
+            } while (distance(newX, newY, noButton) < 50); // Use distance function
 
             noButton.style.left = newX + 'px';
             noButton.style.top = newY + 'px';
         }
+        function distance(x1, y1, element) {
+            const rect = element.getBoundingClientRect();
+            const x2 = rect.left + rect.width / 2;
+            const y2 = rect.top + rect.height / 2;
+            return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        }
+
 
         function showFireworks() { /* ... your fireworks code ... */ }
     </script>
