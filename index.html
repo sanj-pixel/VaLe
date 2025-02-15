@@ -120,6 +120,7 @@ button:hover {
         <div id="fireworks"></div>
     </div>
 
+   
     <script>
         const yesButton = document.getElementById('yesButton');
         const noButton = document.getElementById('noButton');
@@ -127,45 +128,43 @@ button:hover {
         const gifContainer = document.getElementById('gifContainer');
         const imageContainer = document.getElementById('imageContainer');
         const fireworksContainer = document.getElementById('fireworks');
-        let noButtonClicked = false;
         let noClickCount = 0; // Counter for "No" clicks
+        let enableMovement = false; // Flag to enable/disable movement
 
-        
         yesButton.addEventListener('click', () => {
-    window.location.href = "yes.html"; // Redirect to yes.html
-});
-
+            window.location.href = "yes.html"; // Redirect to yes.html
+        });
 
         noButton.addEventListener('click', () => {
-            if (!noButtonClicked) {
-                gifContainer.style.display = 'block';
-                noButtonClicked = true;
-                noButton.addEventListener('mouseover', moveNoButton);
-            } else {
-                noClickCount++; // Increment the counter
-                let message = "";
+            noClickCount++; // Increment the counter
+            let message = "";
 
-                switch (noClickCount) {
-                    case 1:
-                        message = "Please";
-                        break;
-                    case 2:
-                        message = "Gowthami";
-                        break;
-                    case 3:
-                        message = "Listen to me, I accept my defeat";
-                        break;
-                    default:
-                        message = "Okay, fine!"; // Or any other message you want to display after the 3rd click
-                        break;
-                }
-                messageDiv.textContent = message;
-                messageDiv.style.display = 'block';
-                moveNoButton();}
-            });
-        
+            switch (noClickCount) {
+                case 1:
+                    message = "Please";
+                    break;
+                case 2:
+                    message = "Gowthami";
+                    break;
+                case 3:
+                    message = "Listen to me, I accept my defeat";
+                    enableMovement = true; // Enable movement after the 3rd click
+                    break;
+                default:
+                    message = "Okay, fine!"; // Or any other message you want to display after the 3rd click
+                    break;
+            }
+            messageDiv.textContent = message;
+            messageDiv.style.display = 'block';
+        });
 
-       function moveNoButton() {
+        noButton.addEventListener('mouseover', () => {
+            if (enableMovement) { // Only move if movement is enabled
+                moveNoButton();
+            }
+        });
+
+        function moveNoButton() {
             const maxX = window.innerWidth - noButton.offsetWidth;
             const maxY = window.innerHeight - noButton.offsetHeight;
 
@@ -178,13 +177,13 @@ button:hover {
             noButton.style.left = newX + 'px';
             noButton.style.top = newY + 'px';
         }
+
         function distance(x1, y1, element) {
             const rect = element.getBoundingClientRect();
             const x2 = rect.left + rect.width / 2;
             const y2 = rect.top + rect.height / 2;
             return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
         }
-
 
         function showFireworks() { /* ... your fireworks code ... */ }
     </script>
