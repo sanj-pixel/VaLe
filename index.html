@@ -130,12 +130,11 @@ button:hover {
         let noButtonClicked = false;
         let noClickCount = 0; // Counter for "No" clicks
 
+        
         yesButton.addEventListener('click', () => {
-            imageContainer.style.display = 'block';
-            messageDiv.textContent = "I love you!";
-            messageDiv.style.display = 'block';
-            showFireworks();
-        });
+    window.location.href = "yes.html"; // Redirect to yes.html
+});
+
 
         noButton.addEventListener('click', () => {
             if (!noButtonClicked) {
