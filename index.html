@@ -126,13 +126,10 @@ button:hover {
     const imageContainer = document.getElementById('imageContainer');
     const fireworksContainer = document.getElementById('fireworks');
     let noButtonClicked = false;
-
-    yesButton.addEventListener('click', () => {
-        imageContainer.style.display = 'block';
-        messageDiv.textContent = "I love you!";
-        messageDiv.style.display = 'block';
-        showFireworks(); 
-    });
+yesButton.addEventListener('click', () => {
+    window.location.href = "yes.html"; // Redirect to yes.html
+});
+    
 
     noButton.addEventListener('click', () => {
       if (!noButtonClicked) {
