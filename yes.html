@@ -58,18 +58,26 @@
 
     <script>
        function showFireworks() {
-            for (let i = 0; i < 100; i++) { // Create multiple fireworks
-                const firework = document.createElement('div');
-                firework.classList.add('firework');
-                firework.style.left = Math.random() * window.innerWidth + 'px'; // Random X position
-                firework.style.top = window.innerHeight + 'px'; // Start at bottom
-                document.getElementById('fireworks').appendChild(firework);
+    const fireworksContainer = document.getElementById('fireworks'); // Get the container
 
-                setTimeout(() => {
-                    firework.remove(); // Remove after animation
-                }, 1000); // Match animation duration
-            }
-        }
+    for (let i = 0; i < 100; i++) {
+        const firework = document.createElement('div');
+        firework.classList.add('firework');
+
+        // Random X position
+        firework.style.left = Math.random() * window.innerWidth + 'px';
+
+        // Random Y position within a range (Adjust the range as needed)
+        const randomY = Math.random() * window.innerHeight; // Up to the full viewport height
+        firework.style.top = window.innerHeight - randomY + 'px'; // Start within the viewport
+
+        fireworksContainer.appendChild(firework);
+
+        setTimeout(() => {
+            fireworksContainer.removeChild(firework);
+        }, 1000);
+    }
+}
         showFireworks();
     </script>
 </body>
